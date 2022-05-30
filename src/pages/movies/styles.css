@@ -1,0 +1,169 @@
+.container {
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.leading {
+  padding-top: 2rem;
+}
+.leading h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 5rem;
+}
+.leading p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 24px;
+  margin-top: 1rem;
+}
+.leading .search {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.leading .search-btn {
+  margin-top: 8px;
+}
+
+.movies-container {
+  margin-top: 4rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.movies {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 8px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.details .image {
+  width: calc(480px / 2);
+  height: calc(720px / 2);
+  align-self: center;
+}
+.details .image img {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+}
+.details-text {
+  margin-top: 14px;
+}
+.details-text .title {
+  font-family: "Poppins";
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 32px;
+}
+.details-text .plot {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 24px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+.details-text .type,
+.details-text .released,
+.details-text .runtime,
+.details-text .genres {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+.details-text .type-label,
+.details-text .released-label,
+.details-text .runtime-label,
+.details-text .genres-label {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 24px;
+  color: #767e94;
+}
+.details-text .type-value,
+.details-text .released-value,
+.details-text .runtime-value,
+.details-text .genres-value {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 32px;
+  color: black;
+  text-transform: capitalize;
+}
+
+@media (min-width: 480px) {
+  .container {
+    padding: 0 2rem;
+  }
+  .leading .search {
+    flex-direction: row;
+    align-items: center;
+  }
+  .leading .search-btn {
+    margin-top: 0;
+    margin-left: 1rem;
+  }
+
+  .movies {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (min-width: 720px) {
+  .container {
+    padding: 0 120px;
+  }
+
+  .leading {
+    max-width: 75%;
+  }
+
+  .details .image {
+    align-self: flex-start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .movies {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .details {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .details-text .plot {
+    font-size: 1.25rem;
+    line-height: 32px;
+  }
+  .details .image {
+    min-width: 480px;
+    width: 100%;
+    height: auto;
+  }
+  .details-text {
+    margin-top: 0;
+    margin-left: 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .movies {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

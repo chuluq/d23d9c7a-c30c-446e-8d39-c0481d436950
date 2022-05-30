@@ -24,10 +24,10 @@ export const getDetailMovie = createAsyncThunk(
   "movies/getDetailMovie",
   async (id) => {
     const response = await GET(
-      `${API_URL}/?apikey=${API_KEY}&i=tt2975590&plot=full`
+      `${API_URL}/?apikey=${API_KEY}&i=${id}&plot=full`
     );
 
-    return response.data;
+    return response;
   }
 );
 

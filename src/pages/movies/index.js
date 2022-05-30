@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { searchMovies, getDetailMovie } from "app/movies/movieSlice";
 import { LOADING } from "app/types";
 import Card from "components/Card";
 import Button from "components/Button";
 import Input from "components/Input";
 import Spinner from "components/Spinner";
-import sample from "assets/sample.png";
 import SearchIcon from "constants/icons/search";
 import "./styles.css";
 
-const Home = () => {
+const Movies = () => {
   const dispatch = useDispatch();
 
   const movies = useSelector((state) => state.movies.movies);
@@ -30,7 +30,7 @@ const Home = () => {
   };
 
   const handleGetDetail = (id) => {
-    dispatch(getDetailMovie());
+    dispatch(getDetailMovie(id));
   };
 
   return (
@@ -63,7 +63,9 @@ const Home = () => {
           {movies?.Search.map((movie) => {
             return (
               <div key={movie.imdbID} className="movie-item">
-                <Card name={movie.Title} image={movie.Poster} />
+                <Link to={`/movies/${movie.imdbID}`}>
+                  <Card name={movie.Title} image={movie.Poster} />
+                </Link>
               </div>
             );
           })}
@@ -73,4 +75,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Movies;
