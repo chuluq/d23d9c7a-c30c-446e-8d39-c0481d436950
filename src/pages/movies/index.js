@@ -8,6 +8,7 @@ import Button from "components/Button";
 import Input from "components/Input";
 import Spinner from "components/Spinner";
 import SearchIcon from "constants/icons/search";
+import Pagination from "components/Pagination";
 import "./styles.css";
 
 const Movies = () => {
@@ -32,6 +33,8 @@ const Movies = () => {
   const handleGetDetail = (id) => {
     dispatch(getDetailMovie(id));
   };
+
+  console.log(movies);
 
   return (
     <div className="container">
@@ -59,17 +62,26 @@ const Movies = () => {
       {/* Movie List */}
       <div className="movies-container">
         {movieStatus === LOADING && <Spinner />}
+        {movies?.Error && (
+          <div className="not-found">
+            <h2>Sorry, No results found</h2>
+            <p>There are no movies matching your search terms.</p>
+          </div>
+        )}
         <div className="movies">
-          {movies?.Search.map((movie) => {
-            return (
-              <div key={movie.imdbID} className="movie-item">
-                <Link to={`/movies/${movie.imdbID}`}>
-                  <Card name={movie.Title} image={movie.Poster} />
-                </Link>
-              </div>
-            );
-          })}
+          {movies?.Search &&
+            movies?.Search.map((movie) => {
+              return (
+                <div key={movie.imdbID} className="movie-item">
+                  <Link to={`/movies/${movie.imdbID}`}>
+                    <Card name={movie.Title} image={movie.Poster} />
+                  </Link>
+                </div>
+              );
+            })}
         </div>
+
+        {/* <Pagination  /> */}
       </div>
     </div>
   );
