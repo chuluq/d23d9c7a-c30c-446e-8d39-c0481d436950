@@ -1,8 +1,9 @@
-import "./styles.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Menu from "constants/icons/menu";
 import { links } from "constants/links";
+import Menu from "constants/icons/menu";
+import Close from "constants/icons/close";
+import "./styles.css";
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ const Navbar = () => {
         <h1 className="logo">Ningali</h1>
       </Link>
       <div className="menu" onClick={handleToggleMenu}>
-        <Menu />
+        {isMenuOpen ? <Close /> : <Menu />}
       </div>
       <div
         className={`links ${isMenuOpen ? "active" : ""}`}

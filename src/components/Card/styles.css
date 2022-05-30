@@ -1,0 +1,36 @@
+.card {
+  max-width: 282px;
+  max-height: 480px;
+  border-radius: 12px;
+  background-color: rgba(32, 40, 62, 0.8);
+  margin-bottom: 20px;
+  margin-right: 24px;
+}
+
+.card .imageContainer {
+  padding: 8px 8px 0;
+  position: relative;
+}
+.card .imageContainer .image {
+  padding: 8px;
+  width: 100%;
+  height: auto;
+}
+.card .imageContainer .rating {
+  z-index: 10;
+  position: absolute;
+  top: 18px;
+  left: 18px;
+}
+
+.card .detail {
+  padding: 1rem;
+}
+.card .detail p {
+  color: #ebeef5;
+  font-family: "Poppins";
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+}

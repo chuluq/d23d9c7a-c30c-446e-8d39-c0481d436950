@@ -1,0 +1,14 @@
+.rating {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  width: 47px;
+}
+
+.rating .ratingNo {
+  margin-left: 4px;
+  color: #ffbd6d;
+}

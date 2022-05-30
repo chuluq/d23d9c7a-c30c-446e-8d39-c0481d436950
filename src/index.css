@@ -25,3 +25,12 @@ ul {
 img {
   max-width: 100%;
 }
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+.icon_small {
+  width: 16px;
+  height: 16px;
+}

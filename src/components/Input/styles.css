@@ -1,0 +1,21 @@
+.input_group {
+  border: 1px solid #323b54;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 16px;
+  color: #475069;
+  display: flex;
+  align-items: center;
+  max-width: 344px;
+  height: 64px;
+}
+.input {
+  border: none;
+  outline: none;
+}
+.leftIcon {
+  margin-right: 0.5rem;
+}
