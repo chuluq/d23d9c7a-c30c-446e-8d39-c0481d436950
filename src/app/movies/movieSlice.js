@@ -3,7 +3,7 @@ import { IDLE, LOADING, FAILED } from "app/types";
 import { API_URL, API_KEY, GET } from "helpers/api";
 
 const initialState = {
-  movies: [],
+  movies: null,
   detailMovie: null,
   status: IDLE,
   error: null,
@@ -16,7 +16,7 @@ export const searchMovies = createAsyncThunk(
       `${API_URL}/?apikey=${API_KEY}&s=${keyword}&page=${page}`
     );
 
-    return response.data;
+    return response;
   }
 );
 

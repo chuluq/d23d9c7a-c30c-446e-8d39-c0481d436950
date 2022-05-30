@@ -1,15 +1,11 @@
 import PropTypes from "prop-types";
-import Rating from "components/Rating";
 import "./styles.css";
 
-const Card = ({ image, ratingNo, name }) => {
+const Card = ({ image, name }) => {
   return (
     <div className="card">
       <div className="imageContainer">
         <img src={image} alt={name} className="image" />
-        <div className="rating">
-          <Rating ratingNo={ratingNo} />
-        </div>
       </div>
       <div className="detail">
         <p>{name}</p>
@@ -20,7 +16,6 @@ const Card = ({ image, ratingNo, name }) => {
 
 Card.propTypes = {
   image: PropTypes.string.isRequired,
-  ratingNo: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
 };
 

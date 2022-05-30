@@ -34,3 +34,8 @@ img {
   width: 16px;
   height: 16px;
 }
+
+.layout {
+  width: 100%;
+  min-height: calc(100vh - 120px);
+}

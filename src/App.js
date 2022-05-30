@@ -8,13 +8,15 @@ const App = () => {
     <>
       <BrowserRouter>
         <Navbar />
-        <Routes>
-          {links.map((link) => {
-            return (
-              <Route key={link.id} path={link.url} element={link.component} />
-            );
-          })}
-        </Routes>
+        <div className="layout">
+          <Routes>
+            {links.map((link) => {
+              return (
+                <Route key={link.id} path={link.url} element={link.component} />
+              );
+            })}
+          </Routes>
+        </div>
         <Footer />
       </BrowserRouter>
     </>

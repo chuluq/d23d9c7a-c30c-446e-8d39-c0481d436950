@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { searchMovies, getDetailMovie } from "app/movies/movieSlice";
+import { LOADING } from "app/types";
 import Card from "components/Card";
 import Button from "components/Button";
 import Input from "components/Input";
+import Spinner from "components/Spinner";
 import sample from "assets/sample.png";
 import SearchIcon from "constants/icons/search";
 import "./styles.css";
@@ -11,8 +13,12 @@ import "./styles.css";
 const Home = () => {
   const dispatch = useDispatch();
 
+  const movies = useSelector((state) => state.movies.movies);
+  const movieStatus = useSelector((state) => state.movies.status);
+
   const [searchKeyword, setSearchKeyword] = useState("");
   const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
 
   const handleChangeSearch = (e) => {
     setSearchKeyword(e.target.value);
@@ -42,23 +48,27 @@ const Home = () => {
             type="text"
             placeholder="Search Movies"
             leftIcon={<SearchIcon />}
-            handleChange={() => console.log("onChange search")}
+            handleChange={handleChangeSearch}
           />
           <div className="search-btn">
-            <Button
-              title="Search"
-              handleClick={() => console.log("search button")}
-            />
+            <Button title="Search" handleClick={handleSearch} />
           </div>
         </div>
       </div>
-      {/* <input type="text" value={searchKeyword} onChange={handleChangeSearch} />
-      <button type="submit" onClick={(e) => searchKeyword && handleSearch(e)}>
-        search
-      </button>
-      <button type="button" onClick={handleGetDetail}>
-        get detail
-      </button> */}
+
+      {/* Movie List */}
+      <div className="movies-container">
+        {movieStatus === LOADING && <Spinner />}
+        <div className="movies">
+          {movies?.Search.map((movie) => {
+            return (
+              <div key={movie.imdbID} className="movie-item">
+                <Card name={movie.Title} image={movie.Poster} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
