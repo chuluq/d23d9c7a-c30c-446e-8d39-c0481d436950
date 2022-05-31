@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { usePagination, DOTS } from "./usePagination";
 import { useDispatch, useSelector } from "react-redux";
 import { searchMovies, changePage } from "app/movies/movieSlice";
@@ -73,6 +74,14 @@ const Pagination = ({
       </div>
     </div>
   );
+};
+
+Pagination.propTypes = {
+  totalCount: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  siblingCount: PropTypes.number,
+  currentPage: PropTypes.number,
+  keyword: PropTypes.string.isRequired,
 };
 
 export default Pagination;

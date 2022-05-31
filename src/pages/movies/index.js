@@ -110,7 +110,7 @@ const Movies = () => {
               <Pagination
                 currentPage={page}
                 pageSize={10}
-                totalCount={totalRecords}
+                totalCount={parseInt(totalRecords)}
                 keyword={searchKeyword}
               />
             </div>
