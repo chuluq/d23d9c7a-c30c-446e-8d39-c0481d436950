@@ -53,10 +53,6 @@ const Pagination = ({
           &laquo;
         </button>
         {paginationRange.map((pageNumber, index) => {
-          if (pageNumber === DOTS) {
-            return <span key={index}>&#8230;</span>;
-          }
-
           return (
             <button
               key={index}

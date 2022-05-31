@@ -3,6 +3,8 @@
   border-radius: 12px;
   background-color: rgba(32, 40, 62, 0.8);
   height: 100%;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .card .imageContainer {
@@ -12,6 +14,10 @@
 .card .imageContainer > .image {
   width: 100%;
   height: auto;
+  border-radius: 12px;
+}
+.card .imageContainer > .image:hover {
+  transform: scale(1.1);
 }
 .card .imageContainer .rating {
   z-index: 10;

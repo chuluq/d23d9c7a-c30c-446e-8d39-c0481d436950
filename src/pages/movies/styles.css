@@ -179,6 +179,7 @@
 
   .movies-container .pagination-content {
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
   }
   .movies-container .movies-total {
