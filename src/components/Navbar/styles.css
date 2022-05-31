@@ -66,6 +66,7 @@
     left: auto;
     height: auto;
     width: auto;
+    padding: 0;
   }
   .navbar .links:last-child {
     box-shadow: none;

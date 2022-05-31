@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { searchMovies, getDetailMovie } from "app/movies/movieSlice";
 import { LOADING } from "app/types";
 import Card from "components/Card";
@@ -13,28 +13,41 @@ import "./styles.css";
 
 const Movies = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const movies = useSelector((state) => state.movies.movies);
   const movieStatus = useSelector((state) => state.movies.status);
+  const page = useSelector((state) => state.movies.currentPage);
 
+  const [movieList, setMovieList] = useState([]);
+  const [totalRecords, setTotalRecords] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState("");
-  const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(0);
+
+  useEffect(() => {
+    if (movies) {
+      setMovieList(movies?.Search);
+      setTotalRecords(movies?.totalResults);
+    }
+  }, [movies]);
 
   const handleChangeSearch = (e) => {
     setSearchKeyword(e.target.value);
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    dispatch(searchMovies(searchKeyword, page));
+  const handleSearch = () => {
+    let payload = {
+      keyword: searchKeyword,
+      page,
+    };
+
+    dispatch(searchMovies(payload));
   };
 
   const handleGetDetail = (id) => {
     dispatch(getDetailMovie(id));
-  };
 
-  console.log(movies);
+    navigate(`/movies/${id}`);
+  };
 
   return (
     <div className="container">
@@ -62,26 +75,47 @@ const Movies = () => {
       {/* Movie List */}
       <div className="movies-container">
         {movieStatus === LOADING && <Spinner />}
-        {movies?.Error && (
+        {movieList && movies?.Error && (
           <div className="not-found">
             <h2>Sorry, No results found</h2>
-            <p>There are no movies matching your search terms.</p>
+            {movies?.Error ? (
+              <p>{movies?.Error}</p>
+            ) : (
+              <p>There are no movies matching your search terms.</p>
+            )}
           </div>
         )}
+
         <div className="movies">
-          {movies?.Search &&
-            movies?.Search.map((movie) => {
+          {movieList &&
+            movieList.map((movie) => {
               return (
-                <div key={movie.imdbID} className="movie-item">
-                  <Link to={`/movies/${movie.imdbID}`}>
-                    <Card name={movie.Title} image={movie.Poster} />
-                  </Link>
+                <div
+                  key={movie.imdbID}
+                  className="movie-item"
+                  onClick={() => handleGetDetail(movie.imdbID)}
+                >
+                  <Card name={movie.Title} image={movie.Poster} />
                 </div>
               );
             })}
         </div>
 
-        {/* <Pagination  /> */}
+        {totalRecords > 0 && (
+          <div className="pagination-content">
+            <h3 className="movies-total">
+              All <span>({totalRecords})</span>
+            </h3>
+            <div className="pagination">
+              <Pagination
+                currentPage={page}
+                pageSize={10}
+                totalCount={totalRecords}
+                keyword={searchKeyword}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

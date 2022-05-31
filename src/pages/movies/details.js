@@ -1,23 +1,11 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getDetailMovie } from "app/movies/movieSlice";
+import { useSelector } from "react-redux";
 import { LOADING } from "app/types";
 import Spinner from "components/Spinner";
 import Rating from "components/Rating";
 
 const MovieDetails = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-
   const detailsMovie = useSelector((state) => state.movies.detailMovie);
   const movieStatus = useSelector((state) => state.movies.status);
-
-  useEffect(() => {
-    if (id) {
-      dispatch(getDetailMovie(id));
-    }
-  }, [id]);
 
   return (
     <div className="container">
@@ -26,7 +14,7 @@ const MovieDetails = () => {
           <Spinner />
         </div>
       )}
-      {detailsMovie && (
+      {movieStatus !== LOADING && detailsMovie && (
         <div className="details">
           <div className="image">
             <img src={detailsMovie?.Poster} alt={detailsMovie?.Title} />

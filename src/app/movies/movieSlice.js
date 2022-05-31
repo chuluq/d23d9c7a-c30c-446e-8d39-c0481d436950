@@ -5,13 +5,15 @@ import { API_URL, API_KEY, GET } from "helpers/api";
 const initialState = {
   movies: null,
   detailMovie: null,
+  currentPage: 1,
   status: IDLE,
   error: null,
 };
 
 export const searchMovies = createAsyncThunk(
   "movies/searchMovies",
-  async (keyword, page) => {
+  async (movie) => {
+    const { keyword, page } = movie;
     const response = await GET(
       `${API_URL}/?apikey=${API_KEY}&s=${keyword}&page=${page}`
     );
@@ -34,7 +36,11 @@ export const getDetailMovie = createAsyncThunk(
 export const movieSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {},
+  reducers: {
+    changePage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // search movies
@@ -63,5 +69,7 @@ export const movieSlice = createSlice({
       });
   },
 });
+
+export const { changePage } = movieSlice.actions;
 
 export default movieSlice.reducer;
